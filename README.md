@@ -12,6 +12,10 @@ console.setHost("www.example.com");
 console.setUser("joe");
 console.setIdentityFile(new File(".ssh/id_rsa")); // Optional if you use ssh keys
 console.setUserInfoProvider(...); // This interface will provide the system with passwords/passphrases see below
+console.connect();
+// Do some work on the server, see below
+// Commands can be run in parallel because of the SSH session/channel protocol.  
+console.disconnect();
 ```
 
 Simple implementation of UserInfoProvider for getting passwords, plug your own UI in here.
