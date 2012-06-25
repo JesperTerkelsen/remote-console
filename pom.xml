@@ -31,6 +31,9 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <local-deployment-snapshots>/Users/jester/NetBeansProjects/deck-mvn-repo/snapshots/</local-deployment-snapshots>
+        <local-deployment-release>/Users/jester/NetBeansProjects/deck-mvn-repo/release/</local-deployment-release>
+        <local-deployment>${local-deployment-snapshots}</local-deployment>
     </properties>
     
 
@@ -136,6 +139,7 @@
                 <artifactId>maven-release-plugin</artifactId>
                 <configuration>
                     <tagNameFormat>@{project.version}</tagNameFormat>
+                    <releaseProfiles>release</releaseProfiles>
                 </configuration>
             </plugin>            
             <plugin>
@@ -158,7 +162,7 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-deploy-plugin</artifactId>
                 <configuration>
-                    <altDeploymentRepository>snapshot-repo::default::file:/Users/jester/NetBeansProjects/deck-mvn-repo/snapshots/</altDeploymentRepository>
+                    <altDeploymentRepository>snapshot-repo::default::file:${local-deployment}</altDeploymentRepository>
                 </configuration>
             </plugin>
 
@@ -205,4 +209,12 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+    <profiles>
+        <profile>
+            <id>release</id>
+            <properties>
+                <local-deployment-release>${local-deployment-snapshots}</local-deployment-release>
+            </properties>
+        </profile>
+    </profiles>
 </project>
