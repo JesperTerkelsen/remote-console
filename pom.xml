@@ -14,7 +14,7 @@
     
     <scm>
         <connection>
-            scm:git:git@shadow.infopaq.net:cs-utils.git
+            scm:git:git@github.com:JesperTerkelsen/remote-console.git
         </connection>
     </scm>
     <!-- this repository must be specified to find the parent -->
@@ -32,6 +32,19 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
+    
+
+    <distributionManagement>
+        <repository>
+            <id>repo</id>
+            <url>https://github.com/JesperTerkelsen/deck-mvn-repo/raw/master/releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>snapshot-repo</id>
+            <url>https://github.com/JesperTerkelsen/deck-mvn-repo/raw/master/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
+        
     <build>
         <pluginManagement>
             <plugins>
@@ -140,6 +153,15 @@
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
+            
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <configuration>
+                    <altDeploymentRepository>snapshot-repo::default::file:/Users/jester/NetBeansProjects/deck-mvn-repo/snapshots/</altDeploymentRepository>
+                </configuration>
+            </plugin>
+
         </plugins>
     </build>
     <dependencyManagement>
