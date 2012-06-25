@@ -1,6 +1,6 @@
 # remote-console
 
-A simple wrapper on top of JSCH for a simpler interface. 
+A simple wrapper on top of [JSch](http://www.jcraft.com/jsch/) for a simpler interface. 
 Allowing running remote commands, uploading and downloading files
 
 ### Connect
