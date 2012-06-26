@@ -213,7 +213,7 @@
         <profile>
             <id>release</id>
             <properties>
-                <local-deployment-release>${local-deployment-snapshots}</local-deployment-release>
+                <local-deployment>${local-deployment-release}</local-deployment>
             </properties>
         </profile>
     </profiles>
