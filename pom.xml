@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>dk.deck.remote-console</groupId>
     <artifactId>master</artifactId>
-    <version>1.0.3-SNAPSHOT</version>
+    <version>1.0.3</version>
     <packaging>pom</packaging>
     <name>Remote Console Master Project</name>
     <description>Master project for the remote console project</description>
