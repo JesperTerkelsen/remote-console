@@ -2,7 +2,21 @@
 
 A simple wrapper on top of [JSch](http://www.jcraft.com/jsch/) for a simpler interface. 
 Allowing running remote commands, uploading and downloading files
+## Download and use
+Use maven
+```xml
+<repository>
+    <id>deck-repo</id>
+    <url>https://github.com/JesperTerkelsen/deck-mvn-repo/raw/master/releases</url>
+</repository>
+<dependency>
+    <groupId>dk.deck.remote-console</groupId>
+    <artifactId>remote-console</artifactId>
+    <version>1.0.6</version>
+</dependency>
+```
 
+## How to use
 ### Connect
 
 ```java
@@ -11,7 +25,7 @@ RemoteConsole console = new SshRemoteConsole(jsch);
 console.setHost("www.example.com");
 console.setUser("joe");
 console.setIdentityFile(new File(".ssh/id_rsa")); // Optional if you use ssh keys
-console.setUserInfoProvider(...); // This interface will provide the system with passwords/passphrases see below
+console.setUserInfoProvider(...); // This interface will provide the system with passwords/passphrases, see below
 console.connect();
 // Do some work on the server, see below
 // Commands can be run in parallel because of the SSH session/channel protocol.  
@@ -36,11 +50,11 @@ remote.setUserInfoProvider(new UserInfoProvider() { // UserInfoProvider is a int
 ### Run remote command 
 Simplest form - Standard out is return in the string, an exception will be thrown if the exit value is not zero.
 ```java
-String result = console.executeCommand("ls -l");
+String result = console.executeCommand("script.sh");
 ```
 More feedback - Returns a object to get the value from.
 ```java
-CommandResult result = console.executeCommandResult("ls -l");
+CommandResult result = console.executeCommandResult("script.sh");
 String output = result.getOutput(); // From std out
 String errorOutput = result.getErrorOutput(); // From std error
 int exitCode = result.getExitCode(); // exit code
