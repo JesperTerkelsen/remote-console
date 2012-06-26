@@ -32,7 +32,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <local-deployment-snapshots>/Users/jester/NetBeansProjects/deck-mvn-repo/snapshots/</local-deployment-snapshots>
-        <local-deployment-release>/Users/jester/NetBeansProjects/deck-mvn-repo/release/</local-deployment-release>
+        <local-deployment-release>/Users/jester/NetBeansProjects/deck-mvn-repo/releases/</local-deployment-release>
         <local-deployment>${local-deployment-snapshots}</local-deployment>
     </properties>
     
