@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>dk.deck.remote-console</groupId>
     <artifactId>master</artifactId>
-    <version>1.0.6-SNAPSHOT</version>
+    <version>1.0.6</version>
     <packaging>pom</packaging>
     <name>Remote Console Master Project</name>
     <description>Master project for the remote console project</description>
@@ -16,7 +16,7 @@
         <connection>
             scm:git:git@github.com:JesperTerkelsen/remote-console.git
         </connection>
-      <tag>HEAD</tag>
+      <tag>1.0.6</tag>
   </scm>
     <!-- this repository must be specified to find the parent -->
     <repositories>
