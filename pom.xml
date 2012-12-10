@@ -13,22 +13,12 @@
     </modules>
     
     <scm>
+        <url>https://github.com/JesperTerkelsen/remote-console</url>
         <connection>
             scm:git:git@github.com:JesperTerkelsen/remote-console.git
         </connection>
       <tag>HEAD</tag>
-  </scm>
-    <!-- this repository must be specified to find the parent -->
-    <repositories>
-        <repository>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-            <id>infopaq-central</id>
-            <name>libs-release</name>
-            <url>http://lager.infopaq.net:8091/artifactory/libs-release</url>
-        </repository>
-    </repositories>    
+    </scm>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
