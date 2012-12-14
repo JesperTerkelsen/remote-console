@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>dk.deck.remote-console</groupId>
     <artifactId>master</artifactId>
-    <version>1.1.1-SNAPSHOT</version>
+    <version>1.1.1</version>
     <packaging>pom</packaging>
     <name>Remote Console Master Project</name>
     <description>Master project for the remote console project</description>
@@ -19,7 +19,7 @@
         <connection>
             scm:git:git@github.com:JesperTerkelsen/remote-console.git
         </connection>
-      <tag>HEAD</tag>
+      <tag>1.1.1</tag>
     </scm>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
