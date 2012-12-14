@@ -9,6 +9,8 @@
     <description>Master project for the remote console project</description>
     
     <modules>
+        <module>modules/console</module>
+        <module>modules/local-console</module>
         <module>modules/remote-console</module>
     </modules>
     

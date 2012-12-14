@@ -14,7 +14,7 @@
  * the License.
  * 
  */
-package dk.deck.remoteconsole;
+package dk.deck.console;
 
 /**
  * Entity that holds a result of a command

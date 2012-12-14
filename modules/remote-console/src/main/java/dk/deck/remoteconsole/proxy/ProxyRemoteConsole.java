@@ -17,16 +17,12 @@
 package dk.deck.remoteconsole.proxy;
 
 import com.jcraft.jsch.ChannelShell;
-import com.jcraft.jsch.JSch;
-import com.jcraft.jsch.JSchException;
+import dk.deck.console.CommandResult;
 import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URL;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import dk.deck.remoteconsole.AbstractRemoteConsole;
-import dk.deck.remoteconsole.CommandResult;
 import dk.deck.remoteconsole.SshRemoteConsole;
 
 /**

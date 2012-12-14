@@ -1,2 +1,4 @@
 /modules/remote-console/target/
 /target/
+/modules/console/target/
+/modules/local-console/target/

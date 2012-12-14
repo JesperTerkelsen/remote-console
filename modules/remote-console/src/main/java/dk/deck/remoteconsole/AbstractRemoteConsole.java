@@ -16,6 +16,7 @@
  */
 package dk.deck.remoteconsole;
 
+import dk.deck.console.CommandResult;
 import java.io.IOException;
 import java.net.URL;
 

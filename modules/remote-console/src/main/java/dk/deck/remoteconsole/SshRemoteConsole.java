@@ -23,6 +23,7 @@ import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.Session;
 import com.jcraft.jsch.UserInfo;
+import dk.deck.console.CommandResult;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;

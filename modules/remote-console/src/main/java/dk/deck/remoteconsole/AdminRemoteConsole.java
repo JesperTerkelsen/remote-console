@@ -17,6 +17,7 @@
 package dk.deck.remoteconsole;
 
 import com.jcraft.jsch.ChannelShell;
+import dk.deck.console.CommandResult;
 import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;

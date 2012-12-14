@@ -17,6 +17,8 @@
 package dk.deck.remoteconsole;
 
 import com.jcraft.jsch.ChannelShell;
+import dk.deck.console.CommandResult;
+import dk.deck.console.Console;
 import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -26,50 +28,7 @@ import java.net.URL;
  *
  * @author Jesper Terkelsen
  */
-public interface RemoteConsole {
-
-    /**
-     * Executes a command on the client side and returns the output from standard out
-     *
-     * @param command unix command
-     * @return Standard out result
-     * @throws java.lang.IllegalStateException if the exit status is != 0
-     * @throws java.io.IOException
-     */
-    String executeCommand(String command) throws IOException;
-
-    /**
-     * Executes a command on the client side and returns the output from standard out.
-     *
-     * @param command unix command
-     * @param failOnExitNotZero indicator to fail on exit status != 0
-     * @return Standard out result
-     * @throws java.lang.IllegalStateException if the exit status is != 0 if failOnExitNotZero = true
-     * @throws java.io.IOException
-     */
-    String executeCommand(String command, boolean failOnExitNotZero) throws IOException;
-
-    /**
-     * Executes a command on the client side and returns the output from standard out
-     *
-     * @param command unix command
-     * @return A holder for the standard out and the exit value
-     * @throws java.lang.IllegalStateException if the exit status is != 0
-     * @throws java.io.IOException
-     */
-    CommandResult executeCommandResult(String command) throws IOException;
-
-    /**
-     * Executes a command on the client side and returns the output from standard out.
-     *
-     * @param command unix command
-     * @param failOnExitNotZero indicator to fail on exit status != 0
-     * @return A holder for the standard out and the exit value
-     * @throws java.lang.IllegalStateException if the exit status is != 0 if failOnExitNotZero = true
-     * @throws java.io.IOException
-     */
-    CommandResult executeCommandResult(String command, boolean failOnExitNotZero) throws IOException;
-
+public interface RemoteConsole extends Console{
 
     void executeCommandAndDisconnect(String command, long disconnectAfterMillis) throws IOException;
 

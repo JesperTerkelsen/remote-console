@@ -16,9 +16,10 @@
  */
 package dk.deck.remoteconsole.shell;
 
+import dk.deck.console.CommandResult;
 import java.io.InputStream;
 import java.io.OutputStream;
-import dk.deck.remoteconsole.CommandResult;
+
 
 /**
  * Can execute commands on a shell, using the current input and outputstream.

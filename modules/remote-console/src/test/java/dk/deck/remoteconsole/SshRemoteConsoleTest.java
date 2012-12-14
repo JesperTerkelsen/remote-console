@@ -16,13 +16,12 @@
  */
 package dk.deck.remoteconsole;
 
-import dk.deck.remoteconsole.SshRemoteConsole;
-import dk.deck.remoteconsole.CommandResult;
 import com.jcraft.jsch.ChannelExec;
 import com.jcraft.jsch.ChannelShell;
 import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.Session;
+import dk.deck.console.CommandResult;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
