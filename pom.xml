@@ -130,11 +130,6 @@
                 <artifactId>maven-release-plugin</artifactId>
                 <configuration>
                     <tagNameFormat>@{project.version}</tagNameFormat>
-                    <!-- 
-                    Use -Prelease
-                    The parameter below does not currently work.
-                    http://stackoverflow.com/questions/3291938/maven-release-plugin-ignores-releaseprofile 
-                    -->
                     <releaseProfiles>release</releaseProfiles>
                 </configuration>
             </plugin>            
