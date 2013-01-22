@@ -31,6 +31,7 @@ import java.io.OutputStream;
 import java.net.URL;
 import dk.deck.remoteconsole.userinfo.LoggingUserInfo;
 import dk.deck.remoteconsole.util.StreamUtil;
+import java.io.Writer;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -110,22 +111,30 @@ public class SshRemoteConsole extends AbstractRemoteConsole implements UserInfoP
     }
     private static int MAX_CONTENT_LENGTH = 1024 * 1024; // 1m buffer should be enugh for most commands
 
+    @Override
+    public CommandResult executeCommandResult(String command, boolean failOnExitNotZero, long disconnectAfterMillis, String disconnectAafterContent) throws IOException {
+        return executeCommandResult(command, failOnExitNotZero, disconnectAfterMillis, disconnectAafterContent, null);
+    }
+
     /**
      * Executes a command on the remote server, via a ssh channel.
      *
      * Captures stdout in the result, while stderr is only logged
-     * 
+     *
      * @param command The unix command to execute
-     * @param failOnExitNotZero throw an exception if the unix command does not return zero (0)
-     * @param disconnectAfterMillis disconnect after a periods (this is usefull when starting deamons)
-     * @param afterContent disconnect after this string has appeard in output (this is usefull when starting deamons), can be used in combination
+     * @param failOnExitNotZero throw an exception if the unix command does not
+     * return zero (0)
+     * @param disconnectAfterMillis disconnect after a periods (this is usefull
+     * when starting deamons)
+     * @param disconnectAfterContent disconnect after this string has appeard
+     * in output (this is usefull when starting deamons), can be used in
+     * combination
      * @return a CommandResult entity with the output and errorcode.
      * @throws IOException on communication errors
      * @throws IllegalStateException if the exit code check is on
      * @todo Cleanup and split up into several methods
      */
-    @Override
-    public CommandResult executeCommandResult(String command, boolean failOnExitNotZero, long disconnectAfterMillis, String afterContent) throws IOException {
+    public CommandResult executeCommandResult(String command, boolean failOnExitNotZero, long disconnectAfterMillis, String disconnectAfterContent, Writer liveOutput) throws IOException {
         try {
             CommandResult result = new CommandResult();
             SshRemoteConsole.log.debug("Executing > " + command);
@@ -145,7 +154,7 @@ public class SshRemoteConsole extends AbstractRemoteConsole implements UserInfoP
                 channel.connect();
                 long start = System.currentTimeMillis();
                 boolean contentReached = true;
-                if (afterContent != null && !afterContent.equals("")) {
+                if (disconnectAfterContent != null && !disconnectAfterContent.equals("")) {
                     contentReached = false;
                 }
                 StringBuilder output = new StringBuilder();
@@ -159,9 +168,7 @@ public class SshRemoteConsole extends AbstractRemoteConsole implements UserInfoP
                             if (i < 0) {
                                 break;
                             }
-                            if (output.toString().length() < MAX_CONTENT_LENGTH) {
-                                output.append(new String(inTmp, 0, i));
-                            }
+                            output(new String(inTmp, 0, i), liveOutput, output);
                             log.trace(new String(inTmp, 0, i));
                         }
                         while (error.available() > 0) {
@@ -190,7 +197,7 @@ public class SshRemoteConsole extends AbstractRemoteConsole implements UserInfoP
                             }
                         }
                         // TODO fix possible flaw that clashes with MAX_CONTENT_LENGTH
-                        if (!contentReached && (output.toString().contains(afterContent) || errorOutput.toString().contains(afterContent))) {
+                        if (!contentReached && (output.toString().contains(disconnectAfterContent) || errorOutput.toString().contains(disconnectAfterContent))) {
                             contentReached = true;
                             start = System.currentTimeMillis();
                             if (disconnectAfterMillis == 0) {
@@ -222,8 +229,19 @@ public class SshRemoteConsole extends AbstractRemoteConsole implements UserInfoP
         }
     }
 
+    private void output(String data, Writer liveOutput, StringBuilder output) throws IOException {
+        if (liveOutput != null) {
+            liveOutput.append(data);
+            liveOutput.flush();
+        }
+        if (output.toString().length() < MAX_CONTENT_LENGTH) {
+            output.append(data);
+        }
+    }
+
     /**
      * Opens a shell channel to the server
+     *
      * @return The ChannelShell object
      * @throws IOException
      */
@@ -486,12 +504,12 @@ public class SshRemoteConsole extends AbstractRemoteConsole implements UserInfoP
     }
 
     /**
-     * Creates a tcp connection with a ssh session.
-     * This is where the authentication occours.
-     * From here you can execute commands or open a shell, via channels.
+     * Creates a tcp connection with a ssh session. This is where the
+     * authentication occours. From here you can execute commands or open a
+     * shell, via channels.
      *
      * This method is using the credentials added on the setter methods.
-     * 
+     *
      * @throws IOException
      */
     @Override
