@@ -30,6 +30,7 @@
         <local-deployment-snapshots>/Users/jester/NetBeansProjects/deck-mvn-repo/snapshots/</local-deployment-snapshots>
         <local-deployment-release>/Users/jester/NetBeansProjects/deck-mvn-repo/releases/</local-deployment-release>
         <local-deployment>${local-deployment-snapshots}</local-deployment>
+        <site-docs.url>/${env.HOME}/sitedocs/${project.artifactId}</site-docs.url>
     </properties>
     
 
@@ -42,6 +43,10 @@
             <id>snapshot-repo</id>
             <url>https://github.com/JesperTerkelsen/deck-mvn-repo/raw/master/snapshots</url>
         </snapshotRepository>
+        <site>
+            <id>site-docs</id>
+            <url>file://${site-docs.url}</url>
+        </site>
     </distributionManagement>
         
     <build>
